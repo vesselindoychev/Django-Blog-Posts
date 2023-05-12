@@ -1,3 +1,41 @@
+from django.contrib.auth import get_user_model
+from django.core.validators import MinLengthValidator
 from django.db import models
 
-# Create your models here.
+from posts_app.accounts.models import Profile
+from posts_app.common.custom_validators import validate_letters_numbers_space_and_dash
+
+UserModel = get_user_model()
+
+
+class Post(models.Model):
+    TITLE_MAX_LENGTH = 100
+    TITLE_MIN_LENGTH = 5
+
+    title = models.CharField(
+        max_length=TITLE_MAX_LENGTH,
+        validators=(
+            MinLengthValidator(TITLE_MIN_LENGTH),
+            validate_letters_numbers_space_and_dash,
+        )
+    )
+
+    body = models.TextField()
+
+    liked = models.ManyToManyField(
+        UserModel,
+        blank=True,
+    )
+
+    updated = models.DateTimeField(
+        auto_now=True,
+    )
+
+    created = models.DateTimeField(
+        auto_now_add=True,
+    )
+
+    author = models.ForeignKey(
+        Profile,
+        on_delete=models.CASCADE,
+    )
