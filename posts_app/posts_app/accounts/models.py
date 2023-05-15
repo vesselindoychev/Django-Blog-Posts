@@ -68,7 +68,10 @@ class Profile(models.Model):
         choices=((s, s) for s in SEX_GROUPS),
     )
 
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(
+        null=True,
+        blank=True,
+    )
 
     updated = models.DateTimeField(
         auto_now=True,
