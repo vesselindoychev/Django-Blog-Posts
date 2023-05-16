@@ -1,0 +1,8 @@
+.not-visible {
+    display: none;
+}
+
+#like-btn {
+    margin-left: 15px;
+    width: 7%;
+}
