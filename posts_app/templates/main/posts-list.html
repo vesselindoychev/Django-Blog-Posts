@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block scripts %}
+    <script src="{% static 'posts/main.js' %}" defer></script>
+{% endblock %}
+
+{% block title %}
+    posts
+{% endblock %}
+
+{% block content %}
+    <a href="{% url 'create-post' %}">Create post</a>
+    <h2>Normal List View with for loop filtered to be seen only by creator</h2>
+    <ul>
+        {% for post in posts %}
+            <li>{{ post.title }} - {{ post.body }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>AJAX Call and js</h2>
+
+    <div id="posts-box"></div>
+
+    <div id="spinner-box" class="text-center">
+        <div class="spinner-border" role="status">
+
+        </div>
+    </div>
+
+    <div class="text-center mb-3" id="end-box">
+        <button class="btn btn-primary" id="load-btn">Load more</button>
+    </div>
+
+{% endblock %}
