@@ -25,6 +25,7 @@ class Post(models.Model):
     liked = models.ManyToManyField(
         UserModel,
         blank=True,
+        related_name='post_liked',
     )
 
     updated = models.DateTimeField(
@@ -35,7 +36,14 @@ class Post(models.Model):
         auto_now_add=True,
     )
 
-    author = models.ForeignKey(
-        Profile,
+    user = models.ForeignKey(
+        UserModel,
         on_delete=models.CASCADE,
     )
+
+    @property
+    def like_count(self):
+        # liked_post_by_user = Post.objects.get(user__in=self.liked)
+        # total_likes = liked_post_by_user.liked.all().count()
+        # return total_likes
+        return self.liked.all().count()
