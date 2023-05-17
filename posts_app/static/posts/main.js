@@ -3,6 +3,12 @@ const spinnerBox = document.querySelector('#spinner-box');
 const loadBtn = document.querySelector('#load-btn');
 const endBox = document.querySelector('#end-box');
 
+const createPostForm = document.getElementById('create-post-form');
+const title = document.getElementById('id_title')
+const body = document.getElementById('id_body')
+const csrf = document.getElementsByName('csrfmiddlewaretoken');
+console.log('csrf', csrf[0].value)
+console.log(createPostForm)
 
 const getCookie = (name) => {
     let cookieValue = null;
@@ -110,3 +116,23 @@ loadBtn.addEventListener('click', () => {
     visible += 3;
     getData();
 })
+
+createPostForm.addEventListener('submit', e => {
+    e.preventDefault();
+    $.ajax({
+        type: 'POST',
+        url: '',
+        data: {
+            'csrfmiddlewaretoken': csrf[0].value,
+            'title': title.value,
+            'body': body.value,
+            // 'action': 'post',
+        },
+        success: function (response) {
+            console.log(response)
+        },
+        error: function (error) {
+            console.log(error)
+        }
+    })
+});
