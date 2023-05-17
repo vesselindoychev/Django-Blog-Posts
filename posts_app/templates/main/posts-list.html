@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
+{% load crispy_forms_filters %}
 {% load static %}
-
+{% load crispy_forms_tags %}
 
 {% block scripts %}
     <script src="{% static 'posts/main.js' %}" defer></script>
@@ -11,7 +12,7 @@
 {% endblock %}
 
 {% block content %}
-    <a href="{% url 'create-post' %}">Create post</a>
+    <a href="{% url 'create-post' %}">Add post</a>
     <h2>Normal List View with for loop filtered to be seen only by creator</h2>
     <ul>
         {% for post in posts %}
@@ -21,14 +22,47 @@
 
     <h2>AJAX Call and js</h2>
 
+    <!-- Bootstrap -->
+    <!-- Button trigger modal -->
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPostModal">
+        Add post
+    </button>
+
+    <!-- Bootstrap -->
+    <!-- Modal -->
+
+    <div class="modal fade" id="addPostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create post</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="create-post-form" method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">+Add</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <div id="posts-box"></div>
 
+    <!-- Bootstrap -->
     <div id="spinner-box" class="text-center">
         <div class="spinner-border" role="status">
 
         </div>
     </div>
 
+    <!-- Bootstrap -->
     <div class="text-center mb-3" id="end-box">
         <button class="btn btn-primary" id="load-btn">Load more</button>
     </div>
