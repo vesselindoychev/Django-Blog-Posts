@@ -1,4 +1,4 @@
-from django.contrib.auth import mixins as auth_mixins
+from django.contrib.auth import mixins as auth_mixins, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core import serializers
 from django.http import JsonResponse
@@ -6,8 +6,11 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic as views
 
-from posts_app.main.forms import CreatePostForm
+from posts_app.accounts.models import Profile
+from posts_app.main.forms import CreatePostForm, CreateBlogForm
 from posts_app.main.models import Post
+
+UserModel = get_user_model()
 
 
 class HomeView(views.TemplateView):
@@ -48,30 +51,47 @@ class PostDetailsView(views.DetailView):
         return context
 
 
-def load_post_data_view(request, num_posts):
-    visible = 3
-    upper = num_posts
-    lower = upper - visible
-    size = Post.objects.all().count()
-    qs = Post.objects.all()
+def create_post_view(request):
+    form = CreatePostForm(request.POST or None)
 
-    data = []
-    for obj in qs:
-        item = {
-            'id': obj.id,
-            'title': obj.title,
-            'body': obj.body,
-            'author': obj.user.email,
-            'liked': True if request.user in obj.liked.all() else False,
-            'likes_count': obj.like_count,
-            'is_creator': obj.user == request.user
-        }
-        data.append(item)
-    return JsonResponse({'data': data[lower:upper], 'size': size})
+    if request.is_ajax():
+        if form.is_valid():
+            creator = Profile.objects.get(user=request.user)
+            instance = form.save(commit=False)
+            instance.user = creator
+            instance.save()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'main/posts-list.html', context)
+
+
+def load_post_data_view(request, num_posts):
+    if request.is_ajax():
+        visible = 3
+        upper = num_posts
+        lower = upper - visible
+        size = Post.objects.all().count()
+        qs = Post.objects.all()
+
+        data = []
+        for obj in qs:
+            item = {
+                'id': obj.id,
+                'title': obj.title,
+                'body': obj.body,
+                'author': obj.user.email,
+                'liked': True if request.user in obj.liked.all() else False,
+                'likes_count': obj.like_count,
+                'is_creator': obj.user == request.user
+            }
+            data.append(item)
+        return JsonResponse({'data': data[lower:upper], 'size': size})
 
 
 def like_unlike_post_view(request):
-
     if request.is_ajax():
         pk = request.POST.get('pk')
         obj = Post.objects.get(pk=pk)
