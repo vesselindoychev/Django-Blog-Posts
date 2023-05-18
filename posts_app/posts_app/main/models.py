@@ -8,7 +8,7 @@ from posts_app.common.custom_validators import validate_letters_numbers_space_an
 UserModel = get_user_model()
 
 
-class BlogPost(models.Model):
+class Blog(models.Model):
     TITLE_MAX_LENGTH = 100
     TITLE_MIN_LENGTH = 5
 
@@ -48,6 +48,8 @@ class BlogPost(models.Model):
         # return total_likes
         return self.liked.all().count()
 
+    class Meta:
+        ordering = ('-created',)
 
 class Post(models.Model):
     TITLE_MAX_LENGTH = 100
@@ -88,3 +90,6 @@ class Post(models.Model):
         # total_likes = liked_post_by_user.liked.all().count()
         # return total_likes
         return self.liked.all().count()
+
+    class Meta:
+        ordering = ('-created',)
