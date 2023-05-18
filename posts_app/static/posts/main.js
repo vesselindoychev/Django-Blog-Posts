@@ -109,6 +109,7 @@ const getData = () => {
     })
 };
 
+
 getData();
 
 loadBtn.addEventListener('click', () => {
