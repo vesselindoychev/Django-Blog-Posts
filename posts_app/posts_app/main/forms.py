@@ -1,6 +1,6 @@
 from django import forms
 
-from posts_app.main.models import Post, BlogPost
+from posts_app.main.models import Post, Blog
 
 
 class CreatePostForm(forms.ModelForm):
@@ -12,6 +12,5 @@ class CreatePostForm(forms.ModelForm):
 
 class CreateBlogForm(forms.ModelForm):
     class Meta:
-        model = BlogPost
-        # fields = '__all__'
+        model = Blog
         fields = ('title', 'body',)
