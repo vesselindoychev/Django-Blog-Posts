@@ -153,7 +153,8 @@ createPostForm.addEventListener('submit', e => {
             `
             );
             $('#addPostModal').modal('hide');
-            handleAlerts('success', 'You have successfully created a blog post!')
+            handleAlerts('success', 'You have successfully created a blog post!');
+            createPostForm.reset();
         },
         error: function (error) {
             console.log(error);
