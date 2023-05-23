@@ -14,3 +14,10 @@ class CreateBlogForm(forms.ModelForm):
     class Meta:
         model = Blog
         fields = ('title', 'body',)
+        widgets = {
+            'body': forms.Textarea(
+                attrs={
+                    'rows': 5,
+                }
+            )
+        }
