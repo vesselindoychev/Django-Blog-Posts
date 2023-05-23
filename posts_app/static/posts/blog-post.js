@@ -78,9 +78,9 @@ const getBlogData = () => {
                                 <div class="col-2"><a href="/post-details/${el.id}" class="btn btn-primary">Details</a></div>
                                 <div class="col-2">
                                     <form class="like-unlike-form" data-form-id="${el.id}">
-                                        ${el.is_creator ? `<p>${el.likes_count} likes</p>` : 
-                                        `<button id="like-unlike-${el.id}" class="btn btn-primary">${el.liked ? `Unlike (${el.likes_count})` : 
-                                        `Like (${el.likes_count})`}</button>`}
+                                        ${el.is_creator ? `<p>${el.likes_count} likes</p>` :
+                        `<button id="like-unlike-${el.id}" class="btn btn-primary">${el.liked ? `Unlike (${el.likes_count})` :
+                            `Like (${el.likes_count})`}</button>`}
                                     </form>
                                     
                                 </div>
@@ -99,7 +99,7 @@ const getBlogData = () => {
             } else if (response.size <= visible) {
                 setTimeout(() => {
                     loadBtn.classList.add('not-visible');
-                    endBox.textContent = 'No more posts to load...' ;
+                    endBox.textContent = 'No more posts to load...';
                 }, 1000);
 
             }
@@ -132,7 +132,7 @@ createPostForm.addEventListener('submit', e => {
         },
         success: function (response) {
             console.log(response)
-            blogPostBox.insertAdjacentHTML('afterbegin',`
+            blogPostBox.insertAdjacentHTML('afterbegin', `
                     <div class="card mb-2">
                         <div class="card-body">
                             <h5 class="card-title">${response.title}</h5>
@@ -153,7 +153,7 @@ createPostForm.addEventListener('submit', e => {
             `
             );
             $('#addPostModal').modal('hide');
-            handleAlerts('success', 'You has successfully created a blog post!')
+            handleAlerts('success', 'You have successfully created a blog post!')
         },
         error: function (error) {
             console.log(error);
