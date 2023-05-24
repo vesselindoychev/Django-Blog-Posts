@@ -103,32 +103,32 @@ const getBlogData = () => {
                 });
 
                 <!-- Hide and Show a DIV Box but it's not working properly -->
-                blogPostBox.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const isButton = e.target.nodeName === 'BUTTON';
-                    if (isButton) {
-
-                        let btnId = e.target.id.split('-').slice(-1);
-                        const div = document.getElementsByClassName(`card-footer-extended-details-${btnId}`)
-                        let divArray = [...div];
-                        let realDiv;
-                        divArray.forEach(el => {
-                            realDiv = el;
-                        })
-
-                        if (realDiv.hidden) {
-                            realDiv.removeAttribute('hidden');
-                            // realDiv.style.hidden = ''
-                            e.target.textContent = 'Hide Blog Details';
-
-                        } else {
-                            realDiv.setAttribute('hidden', true);
-                            e.target.textContent = 'Show Blog Details';
-                        }
-
-
-                    }
-                });
+                // blogPostBox.addEventListener('click', (e) => {
+                //     e.preventDefault();
+                //     const isButton = e.target.nodeName === 'BUTTON';
+                //     if (isButton) {
+                //
+                //         let btnId = e.target.id.split('-').slice(-1);
+                //         const div = document.getElementsByClassName(`card-footer-extended-details-${btnId}`)
+                //         let divArray = [...div];
+                //         let realDiv;
+                //         divArray.forEach(el => {
+                //             realDiv = el;
+                //         })
+                //
+                //         if (realDiv.hidden) {
+                //             realDiv.removeAttribute('hidden');
+                //             // realDiv.style.hidden = ''
+                //             e.target.textContent = 'Hide Blog Details';
+                //
+                //         } else {
+                //             realDiv.setAttribute('hidden', true);
+                //             e.target.textContent = 'Show Blog Details';
+                //         }
+                //
+                //
+                //     }
+                // });
                 <!-- End of Hide and Show DIV Box -->
 
 
