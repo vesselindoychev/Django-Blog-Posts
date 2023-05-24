@@ -69,6 +69,11 @@ class BlogPostEditView(views.UpdateView):
     def get_success_url(self):
         return reverse_lazy('blog-post-details', kwargs={'pk': self.object.pk})
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_author'] = self.object.user_id == self.request.user.id
+        return context
+
 
 def create_blog_post_view(request):
     form = CreateBlogForm(request.POST or None)
