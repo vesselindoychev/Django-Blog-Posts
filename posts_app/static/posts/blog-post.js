@@ -62,7 +62,6 @@ const getBlogData = () => {
         type: 'GET',
         url: `/blog-data/${visible}/`,
         success: function (response) {
-            
             const data = response.data;
             setTimeout(() => {
                 spinnerBox.classList.add('not-visible');
