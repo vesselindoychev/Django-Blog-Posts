@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
-{% block content %}
-    <form method="post" action="{% url 'edit-blog-post' object.id %}">
-        {% csrf_token %}
-        {{ form }}
-        <button>Edit</button>
-    </form>
 
+{% block title %}
+    {{ object.title }} - Edit Page
+
+{% endblock %}
+
+{% block content %}
+    {% if is_author %}
+        <form method="post" action="{% url 'edit-blog-post' object.id %}">
+            {% csrf_token %}
+            {{ form }}
+            <button>Edit</button>
+        </form>
+    {% else %}
+        <h2>You have not permissions to edit this blog post!</h2>
+    {% endif %}
 {% endblock %}
