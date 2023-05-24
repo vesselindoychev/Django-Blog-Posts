@@ -7,8 +7,7 @@ const createPostForm = document.getElementById('create-post-form');
 const title = document.getElementById('id_title')
 const body = document.getElementById('id_body')
 const csrf = document.getElementsByName('csrfmiddlewaretoken');
-console.log('csrf', csrf[0].value)
-console.log(createPostForm)
+
 
 const getCookie = (name) => {
     let cookieValue = null;
@@ -60,11 +59,10 @@ const getData = () => {
         type: 'GET',
         url: `/data/${visible}/`,
         success: function (response) {
-            console.log(response);
             const data = response.data;
             setTimeout(() => {
                 spinnerBox.classList.add('not-visible');
-                console.log(data);
+
                 data.forEach(el => {
                     postBox.innerHTML += `
                     <div class="card mb-2">
@@ -77,9 +75,9 @@ const getData = () => {
                                 <div class="col-2"><a href="/post-details/${el.id}" class="btn btn-primary">Details</a></div>
                                 <div class="col-2">
                                     <form class="like-unlike-form" data-form-id="${el.id}">
-                                        ${el.is_creator ? `<p>${el.likes_count} likes</p>` : 
-                                        `<button id="like-unlike-${el.id}" class="btn btn-primary">${el.liked ? `Unlike (${el.likes_count})` : 
-                                        `Like (${el.likes_count})`}</button>`}
+                                        ${el.is_creator ? `<p>${el.likes_count} likes</p>` :
+                        `<button id="like-unlike-${el.id}" class="btn btn-primary">${el.liked ? `Unlike (${el.likes_count})` :
+                            `Like (${el.likes_count})`}</button>`}
                                     </form>
                                     
                                 </div>
@@ -91,14 +89,14 @@ const getData = () => {
                 });
                 likeUnlikePost();
             }, 1000);
-            console.log(response.size);
+
             if (response.size === 0) {
                 endBox.textContent = 'No posts added...';
                 loadBtn.classList.add('not-visible');
             } else if (response.size <= visible) {
                 setTimeout(() => {
                     loadBtn.classList.add('not-visible');
-                    endBox.textContent = 'No more posts to load...' ;
+                    endBox.textContent = 'No more posts to load...';
                 }, 1000);
 
             }
