@@ -9,7 +9,7 @@ const body = document.getElementById('id_body');
 const csrf = document.getElementsByName('csrfmiddlewaretoken');
 
 const alertBox = document.getElementById('alert-box');
-console.log('csrf', csrf[0].value)
+
 const buttonsList = [];
 
 const getCookie = (name) => {
@@ -62,11 +62,11 @@ const getBlogData = () => {
         type: 'GET',
         url: `/blog-data/${visible}/`,
         success: function (response) {
-            console.log(response);
+            
             const data = response.data;
             setTimeout(() => {
                 spinnerBox.classList.add('not-visible');
-                console.log(data);
+
                 data.forEach(el => {
                     blogPostBox.innerHTML += `
                     <div class="card mb-2">
@@ -134,7 +134,7 @@ const getBlogData = () => {
 
                 // likeUnlikePost();
             }, 1000);
-            console.log(response.size);
+
             if (response.size === 0) {
                 endBox.textContent = 'No posts added...';
                 loadBtn.classList.add('not-visible');
