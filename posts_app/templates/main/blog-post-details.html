@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block scripts %}
+    <script src="{% static 'posts/blog-post-details.js' %}" defer></script>
 {% endblock %}
 
 {% block title %}
@@ -13,8 +15,19 @@
 
     {% if is_author %}
         <ul>
-            <li><a href="#">Edit</a></li>
+            <li><a href="{% url 'edit-blog-post' object.id %}">Edit</a></li>
             <li><a href="#">Delete</a></li>
         </ul>
+
+        <button id="back-btn" class="btn btn-info">Back</button>
+        <button id="edit-btn" class="btn btn-primary" itemid="{{ object.id }}">Edit</button>
+        <button id="delete-btn" class="btn btn-danger">Delete</button>
+
+        <div id="spinner-box" class="text-center">
+            <div class="spinner-border" role="status"></div>
+        </div>
+
+        <div class="mt-1" id="blog-post-box "></div>
+
     {% endif %}
 {% endblock %}
