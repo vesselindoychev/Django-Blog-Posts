@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.views import generic as views
 
 from posts_app.accounts.models import Profile
-from posts_app.main.forms import CreatePostForm, CreateBlogForm
+from posts_app.main.forms import CreatePostForm, CreateBlogForm, EditBlogForm
 from posts_app.main.models import Post, Blog
 
 UserModel = get_user_model()
@@ -59,6 +59,15 @@ class BlogPostDetailsView(views.DetailView):
         context = super().get_context_data(**kwargs)
         context['is_author'] = self.object.user_id == self.request.user.id
         return context
+
+
+class BlogPostEditView(views.UpdateView):
+    model = Blog
+    form_class = EditBlogForm
+    template_name = 'main/edit-blog-post.html'
+
+    def get_success_url(self):
+        return reverse_lazy('blog-post-details', kwargs={'pk': self.object.pk})
 
 
 def create_blog_post_view(request):
