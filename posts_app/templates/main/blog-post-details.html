@@ -1,10 +1,20 @@
 {% extends 'base.html' %}
+
+{% block scripts %}
+{% endblock %}
+
+{% block title %}
+    {{ object.title }} - Details Page
+{% endblock %}
+
 {% block content %}
     <h1>Title: {{ object.title }}</h1>
     <p>Body: {{ object.body }}</p>
 
     {% if is_author %}
-        <a href="#">Edit</a>
-        <a href="#">Delete</a>
+        <ul>
+            <li><a href="#">Edit</a></li>
+            <li><a href="#">Delete</a></li>
+        </ul>
     {% endif %}
 {% endblock %}
