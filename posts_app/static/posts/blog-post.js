@@ -10,6 +10,7 @@ const csrf = document.getElementsByName('csrfmiddlewaretoken');
 
 const alertBox = document.getElementById('alert-box');
 console.log('csrf', csrf[0].value)
+const buttonsList = [];
 
 const getCookie = (name) => {
     let cookieValue = null;
@@ -75,21 +76,62 @@ const getBlogData = () => {
                         </div>
                         <div class="card-footer">
                             <div class="row">
-                                <div class="col-2"><a href="/post-details/${el.id}" class="btn btn-primary">Details</a></div>
+                                <div class="col-2">
+                                    ${el.is_creator ? `<a href="/blog-post-details/${el.id}" class="btn btn-primary">Details</a>` :
+                        `<a href="#" class="btn btn-primary">Comment</a>`}
+                                </div>
                                 <div class="col-2">
                                     <form class="like-unlike-form" data-form-id="${el.id}">
                                         ${el.is_creator ? `<p>${el.likes_count} likes</p>` :
                         `<button id="like-unlike-${el.id}" class="btn btn-primary">${el.liked ? `Unlike (${el.likes_count})` :
                             `Like (${el.likes_count})`}</button>`}
                                     </form>
+                                 
+                                </div>
+                                <div class="col-2">
+                                    <button id="extend-details-btn-${el.id}" type="submit" class="btn btn-primary">Show Blog Details</button>
                                     
                                 </div>
                             </div>
                             
+                            <div class="card-footer-extended-details-${el.id}" hidden="hidden">
+                                <p>Details</p>
+                            </div>
                         </div>
                     </div>
                 `
                 });
+
+                <!-- Hide and Show a DIV Box but it's not working properly -->
+                blogPostBox.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const isButton = e.target.nodeName === 'BUTTON';
+                    if (isButton) {
+
+                        let btnId = e.target.id.split('-').slice(-1);
+                        const div = document.getElementsByClassName(`card-footer-extended-details-${btnId}`)
+                        let divArray = [...div];
+                        let realDiv;
+                        divArray.forEach(el => {
+                            realDiv = el;
+                        })
+
+                        if (realDiv.hidden) {
+                            realDiv.removeAttribute('hidden');
+                            // realDiv.style.hidden = ''
+                            e.target.textContent = 'Hide Blog Details';
+
+                        } else {
+                            realDiv.setAttribute('hidden', true);
+                            e.target.textContent = 'Show Blog Details';
+                        }
+
+
+                    }
+                });
+                <!-- End of Hide and Show DIV Box -->
+
+
                 // likeUnlikePost();
             }, 1000);
             console.log(response.size);
