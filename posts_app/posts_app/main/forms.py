@@ -21,3 +21,9 @@ class CreateBlogForm(forms.ModelForm):
                 }
             )
         }
+
+
+class EditBlogForm(forms.ModelForm):
+    class Meta:
+        model = Blog
+        fields = ('title', 'body',)
