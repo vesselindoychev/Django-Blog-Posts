@@ -58,6 +58,7 @@ class BlogPostDetailsView(views.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['is_author'] = self.object.user_id == self.request.user.id
+        context['edit_form'] = EditBlogForm
         return context
 
 
@@ -96,6 +97,28 @@ def create_blog_post_view(request):
     }
 
     return render(request, 'main/blog-posts-list.html', context)
+
+
+def edit_blog_post_view(request, pk):
+    global new_title, new_body
+    obj = Blog.objects.get(pk=pk)
+    if request.is_ajax():
+        new_title = request.POST.get('title')
+        new_body = request.POST.get('body')
+        obj.title = new_title
+        obj.body = new_body
+        obj.save()
+    return JsonResponse({
+        'title': new_title,
+        'body': new_body,
+    })
+
+
+def delete_blog_post_view(request, pk):
+    obj = Blog.objects.get(pk=pk)
+    if request.is_ajax():
+        obj.delete()
+    return JsonResponse({})
 
 
 def create_post_view(request):
