@@ -2,7 +2,7 @@ from django.urls import path
 
 from posts_app.main.views import HomeView, PostListView, load_post_data_view, PostDetailsView, \
     like_unlike_post_view, create_post_view, CreatePostView, create_blog_post_view, load_blog_post_data_view, \
-    BlogPostDetailsView, BlogPostEditView
+    BlogPostDetailsView, BlogPostEditView, edit_blog_post_view, delete_blog_post_view
 
 urlpatterns = (
     # Home
@@ -17,6 +17,8 @@ urlpatterns = (
     path('blog-post-details/<int:pk>/', BlogPostDetailsView.as_view(), name='blog-post-details'),
     path('blog-posts/', create_blog_post_view, name='blog-posts-list'),
     path('edit-blog-post/<int:pk>/', BlogPostEditView.as_view(), name='edit-blog-post'),
+    path('edit-blog-post-function/<int:pk>/', edit_blog_post_view, name='edit-blog-post-function-based'),
+    path('delete-blog-post-function/<int:pk>/', delete_blog_post_view, name='delete-blog-post-function-based'),
 
     # Loading BlogPosts and Posts with button
     path('data/<int:num_posts>/', load_post_data_view, name='post-data'),
