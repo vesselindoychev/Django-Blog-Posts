@@ -29,6 +29,15 @@ const getCookie = (name) => {
 }
 const csrftoken = getCookie('csrftoken');
 
+const deletedEl = localStorage.getItem('title');
+
+if (deletedEl) {
+    handleAlerts('danger', `You have successfully deleted this post "${deletedEl}"`);
+    localStorage.clear();
+    setTimeout(() => {
+        alertBox.classList.add('not-visible');
+    }, 5000);
+}
 // const likeUnlikePost = () => {
 //     const likeUnlikeForm = [...document.getElementsByClassName('like-unlike-form')]
 //     likeUnlikeForm.forEach(form => form.addEventListener('submit', e => {
@@ -77,25 +86,29 @@ const getBlogData = () => {
                             <div class="row">
                                 <div class="col-2">
                                     ${el.is_creator ? `<a href="/blog-post-details/${el.id}" class="btn btn-primary">Details</a>` :
-                        `<a href="#" class="btn btn-primary">Comment</a>`}
+                                    `<a href="#" class="btn btn-primary">Comment</a>`}
                                 </div>
                                 <div class="col-2">
                                     <form class="like-unlike-form" data-form-id="${el.id}">
                                         ${el.is_creator ? `<p>${el.likes_count} likes</p>` :
-                        `<button id="like-unlike-${el.id}" class="btn btn-primary">${el.liked ? `Unlike (${el.likes_count})` :
-                            `Like (${el.likes_count})`}</button>`}
+                                        `<button id="like-unlike-${el.id}" class="btn btn-primary">${el.liked ? `Unlike (${el.likes_count})` :
+                                        `Like (${el.likes_count})`}</button>`}
                                     </form>
                                  
                                 </div>
+                                <!--
                                 <div class="col-2">
                                     <button id="extend-details-btn-${el.id}" type="submit" class="btn btn-primary">Show Blog Details</button>
                                     
                                 </div>
+                                -->
                             </div>
                             
+                            <!--
                             <div class="card-footer-extended-details-${el.id}" hidden="hidden">
                                 <p>Details</p>
                             </div>
+                            -->
                         </div>
                     </div>
                 `
@@ -152,7 +165,7 @@ const getBlogData = () => {
 };
 
 
-getBlogData();
+
 
 loadBtn.addEventListener('click', () => {
     spinnerBox.classList.remove('not-visible');
@@ -193,9 +206,13 @@ createPostForm.addEventListener('submit', e => {
                     </div>
             `
             );
+            alertBox.classList.remove('not-visible');
             $('#addPostModal').modal('hide');
             handleAlerts('success', 'You have successfully created a blog post!');
             createPostForm.reset();
+            setTimeout(() => {
+                alertBox.classList.add('not-visible');
+            }, 4000);
         },
         error: function (error) {
             console.log(error);
@@ -203,3 +220,5 @@ createPostForm.addEventListener('submit', e => {
         }
     })
 });
+
+getBlogData();
