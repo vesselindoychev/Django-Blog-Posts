@@ -17,9 +17,11 @@
     <!-- Bootstrap -->
     <!-- Button trigger modal -->
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPostModal">
-        Add blog post
-    </button>
+    {% if request.user.is_authenticated %}
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPostModal">
+            Add blog post
+        </button>
+    {% endif %}
 
     <!-- Bootstrap -->
     <!-- Modal -->
