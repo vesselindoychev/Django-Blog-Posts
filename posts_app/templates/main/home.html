@@ -4,8 +4,10 @@
     Home
 {% endblock %}
 {% block content %}
-    <h1>Home</h1>
-    <h4><a href="{% url 'create-post' %}">Create Post</a></h4>
-    <h4><a href="{% url 'posts list' %}">Show Posts</a></h4>
-    <h4><a href="{% url 'blog-posts-list' %}">Show BlogPosts</a></h4>
+    <div>
+        <h1>Home</h1>
+        <h4><a href="{% url 'create-post' %}">Create Post</a></h4>
+        <h4><a href="{% url 'posts list' %}">Show Posts</a></h4>
+        <h4><a href="{% url 'blog-posts-list' %}">Show BlogPosts</a></h4>
+    </div>
 {% endblock %}
