@@ -19,6 +19,10 @@ body {
     background-position: bottom;
 }
 
+/*.container {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*}*/
 
 /* Header */
 .header-for-nav {
@@ -106,7 +110,8 @@ body {
 }
 
 /* Authentication Form Wrapper */
-/*!* Start From Here *! */
+
+/*!* Start From Here *! ------------------------------------> */
 .form-wrapper {
     display: flex;
     align-content: center;
@@ -130,37 +135,104 @@ body {
 
 .form-box h2 {
     text-align: center;
-    color: lightgray;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.form-login-btn {
+    width: 100%;
+    height: 39px;
+    background: #e8f0fe;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    font-size: 16px;
+    color: black;
+    font-weight: 500;
+    margin-top: 10px;
 }
 
 .form-box input[type=text], input[type=password], input[type=email] {
     position: relative;
     width: 100%;
     margin-bottom: 20px;
+    padding-left: 8px;
+    padding-right: 5px;
     border: none;
     outline: none;
+    /* border-bottom: 2px solid lightgray; */
+    padding-bottom: 4px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom: 2px solid gray;
+    border-left: 2px solid gray;
+    border-right: 2px solid gray;
+
     /*border-bottom: 2px solid lightgray;*/
 }
 
 .form-box label[for='id_password'], label[for='id_username'] {
-    color: white;
-    /*position: absolute;*/
-    /*top: 50%;*/
-    /*left: 5px;*/
-    /*transform: translateY(-50%);*/
-    /*font-weight: 500;*/
-    /*pointer-events: none;*/
+    background: white;
+    width: 100%;
+    color: gray;
+    padding-left: 8px;
+    padding-bottom: 1px;
+    font-size: 14px;
+    font-style: italic;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    padding-top: 3px;
+    border-top: 2px solid gray;
+    border-left: 2px solid gray;
+    border-right: 2px solid gray;
 }
 
-/* Ends Here*/
+/* Ends Here -------------------------------------------------> */
 
-/* Authentication forms */
-/*.authentication-form {*/
-/*    display: flex;*/
-/*    flex-wrap: wrap;*/
-/*    flex-direction: column;*/
-/*    width: 500px;*/
-/*}*/
+/* Forgot password div */
+.remember-forgot {
+    font-size: 16px;
+    color: white;
+    font-weight: 500;
+    margin-top: -12px;
+    padding-left: 2px;
+    padding-right: 3px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remember-forgot label input {
+    margin-right: 6px;
+    accent-color: gray;
+}
+
+.remember-forgot a {
+    color: #e8f0fe;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+/* Register link below */
+.login-register {
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0;
+}
+
+.login-register p a {
+    color: #e8f0fe;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-register p a:hover {
+    text-decoration: underline;
+}
 
 /*Register Select*/
 #id_sex {
