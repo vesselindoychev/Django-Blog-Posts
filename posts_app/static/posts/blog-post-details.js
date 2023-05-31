@@ -59,7 +59,7 @@ editPostForm.addEventListener('submit', (e) => {
             handleAlerts('success', 'You have successfully edited the blog post!')
             setTimeout(() => {
                 alertBox.classList.add('not-visible');
-            }, 3000);
+            }, 6000);
             alertBox.classList.remove('not-visible');
             title.textContent = `Title: ${titleInput.value}`;
             body.textContent = `Body: ${bodyInput.value}`;
