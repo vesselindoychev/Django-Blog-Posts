@@ -212,7 +212,7 @@ createPostForm.addEventListener('submit', e => {
             createPostForm.reset();
             setTimeout(() => {
                 alertBox.classList.add('not-visible');
-            }, 4000);
+            }, 6000);
         },
         error: function (error) {
             console.log(error);
