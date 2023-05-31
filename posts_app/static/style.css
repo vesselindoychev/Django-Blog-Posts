@@ -17,6 +17,7 @@ body {
     width: 100%;
     background-size: cover;
     background-position: bottom;
+    flex-direction: column;
 }
 
 /*.container {*/
@@ -106,6 +107,17 @@ body {
 /* Header Nav Login Btn Hover*/
 .login-btn:hover {
     background-color: white;
+    color: dimgray;
+}
+
+.login-btn a {
+    text-decoration: none;
+    color: white;
+    transition: .5s;
+    padding: 10px 28px;
+}
+
+.login-btn a:hover {
     color: dimgray;
 }
 
@@ -244,4 +256,65 @@ body {
 .authentication-form button {
     width: 86px;
     margin-bottom: 10px;
+}
+
+/* HOME PAGE*/
+.home-wrapper {
+    display: flex;
+    align-content: center;
+    position: relative;
+    width: 100%;
+    height: 440px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.home-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-box .dropdown button {
+    color: white;
+    font-family: 'Inconsolata', monospace;
+    font-size: 18px;
+    background: transparent;
+}
+
+.home-box .dropdown ul {
+    background: transparent;
+    /*border: 1px solid white;*/
+}
+
+.home-box .dropdown ul li a {
+    color: white;
+    font-family: Inconsolata, monospace;
+}
+
+.home-box .dropdown ul li a:hover {
+    background: none;
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+.home-box p {
+    color: white;
+    font-family: 'Inconsolata', monospace;
+    font-size: 18px;
+}
+
+.empty-box {
+    height: 200px;
+}
+
+footer {
+    width: 100%;
+
 }
