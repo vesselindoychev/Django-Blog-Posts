@@ -20,11 +20,6 @@ body {
     flex-direction: column;
 }
 
-/*.container {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*}*/
-
 /* Header */
 .header-for-nav {
     position: fixed;
@@ -296,6 +291,7 @@ body {
 .home-box .dropdown ul li a {
     color: white;
     font-family: Inconsolata, monospace;
+    font-size: 16px;
 }
 
 .home-box .dropdown ul li a:hover {
@@ -308,6 +304,34 @@ body {
     color: white;
     font-family: 'Inconsolata', monospace;
     font-size: 18px;
+}
+
+#view-picture {
+    font-size: 16px;
+}
+
+#view-picture:hover {
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+#back-to-home-view-div {
+    display: flex;
+    padding: 30px 0;
+    justify-content: center;
+}
+
+#back-to-home-view-div button {
+    color: white;
+    font-family: 'Inconsolata', monospace;
+    background: transparent;
+    font-size: 20px;
+    border: none;
+}
+
+#back-to-home-view-div button:hover {
+    text-decoration: underline;
+    font-size: 24px;
 }
 
 .empty-box {
