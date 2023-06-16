@@ -3,7 +3,7 @@ from django.views import generic as views
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
-from posts_app.accounts.forms import CreateProfileForm
+from posts_app.accounts.forms import CreateProfileForm, EditProfileForm
 from posts_app.accounts.models import Profile
 
 
@@ -43,3 +43,23 @@ class LoginUserView(auth_views.LoginView):
 
 class LogoutUserView(auth_views.LogoutView):
     pass
+
+
+class ProfileDetailsView(views.DetailView):
+    model = Profile
+    template_name = 'accounts/profile-details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['profile'] = Profile.objects.all()
+        # context['splitted_data'] = Profile.bio.split(' ')
+        return context
+
+
+class EditProfileView(views.UpdateView):
+    model = Profile
+    form_class = EditProfileForm
+    template_name = 'accounts/edit-profile.html'
+
+    def get_success_url(self):
+        return reverse_lazy('profile-details', kwargs={'pk': self.object.user_id})
