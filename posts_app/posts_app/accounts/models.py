@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth import models as auth_models
 from django.core.validators import MinLengthValidator
 from django.db import models
@@ -73,6 +75,11 @@ class Profile(models.Model):
         blank=True,
     )
 
+    location = models.TextField(
+        null=True,
+        blank=True
+    )
+
     updated = models.DateTimeField(
         auto_now=True,
     )
@@ -92,5 +99,18 @@ class Profile(models.Model):
         primary_key=True,
     )
 
+    # Username, City, Country
+
     def __str__(self):
         return f" Profile of the user {self.user.email}"
+
+    def bio_as_list(self):
+        return self.bio.split('\n')
+
+    @property
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
+    @property
+    def get_age(self):
+        return datetime.datetime.now().year - self.date_of_birth.year
