@@ -57,3 +57,15 @@ class CreateProfileForm(auth_forms.UserCreationForm):
                 },
             ),
         }
+
+
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        YEARS = [i for i in range(1980, datetime.datetime.now().year + 1)]
+        model = Profile
+        exclude = ('user',)
+        widgets = {
+            'date_of_birth': forms.SelectDateWidget(
+                years=YEARS
+            )
+        }
