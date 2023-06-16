@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Profile Details
+{% endblock %}
+
+{% block content %}
+    <div class="profile-details-wrapper">
+        <div class="profile-details-nav">
+            <h3>USER PROFILE</h3>
+            <div class="profile-img-name">
+                {% if not object.avatar %}
+                    <span class="user-icon"><i class="fa-solid fa-user"></i></span>
+                {% else %}
+                    <span class="user-img"><img src="{{ object.avatar.url }}" alt=""></span>
+                {% endif %}
+                <p>{{ object.get_full_name }}</p>
+            </div>
+        </div>
+        <div class="profile-details-text">
+            <h2>Hello {{ object.first_name }}</h2>
+            <p>This is your profile page.</p>
+        </div>
+        <div class="profile-details-edit-btn">
+            <button><a href="{% url 'edit-profile' request.user.id %}">Edit profile</a></button>
+        </div>
+
+    </div>
+    {% if object.avatar %}
+        <div class="profile-middle-img"><img src="{{ object.avatar.url }}" alt=""></div>
+    {% else %}
+        <div class="profile-middle-img"><i class="fa-solid fa-user"></i></div>
+    {% endif %}
+    <div class="profile-details-box">
+        <div class="profile-details-name-years">
+            <h3>{{ object.get_full_name }}</h3>
+            {% if object.date_of_birth %}
+                <p>, {{ object.get_age }}</p>
+            {% endif %}
+        </div>
+        {% if object.location %}
+            <div class="profile-details-living-area"><p>{{ object.location }}</p></div>
+        {% endif %}
+        <div class="profile-details-gender"><p>{{ object.sex }}</p></div>
+        {% if object.bio %}
+            <div class="profile-details-bio">
+                {% for line in object.bio_as_list %}
+                    <p>{{ line }}</p>
+                {% endfor %}
+
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
