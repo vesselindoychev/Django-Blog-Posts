@@ -143,6 +143,18 @@ class Profile(models.Model):
         blank=True,
     )
 
+    country = models.ForeignKey(
+        Country,
+        on_delete=models.CASCADE,
+        null=True,
+    )
+
+    city = models.ForeignKey(
+        City,
+        on_delete=models.CASCADE,
+        null=True,
+    )
+
     user = models.OneToOneField(
         PostsAppUser,
         on_delete=models.CASCADE,
