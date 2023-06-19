@@ -12,14 +12,14 @@ class CreateProfileForm(auth_forms.UserCreationForm):
     first_name = forms.CharField(
         max_length=Profile.FIRST_NAME_MAX_LENGTH,
         widget=forms.TextInput(
-            attrs={'placeholder': 'First name'}
+            attrs={'placeholder': 'George'}
         )
     )
 
     last_name = forms.CharField(
         max_length=Profile.LAST_NAME_MAX_LENGTH,
         widget=forms.TextInput(
-            attrs={'placeholder': 'Last name'},
+            attrs={'placeholder': 'McDonald'},
         ),
     )
 
