@@ -22,7 +22,7 @@ body {
 
 /* Header */
 .header-for-nav {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -85,6 +85,10 @@ body {
 
 .navigation-wrapper li a:hover {
     color: gray;
+}
+
+.navigation-wrapper .greetings-user {
+    color: white;
 }
 /*Header Nav Login Btn*/
 .login-btn {
@@ -360,6 +364,8 @@ footer {
     height: 130px;
     background: transparent;
     backdrop-filter: blur(20px);
+    opacity: 1;
+    transition: opacity 1s;
 }
 
 .footer-wrapper {
@@ -432,4 +438,180 @@ footer {
     width: 100%;
     height: 1px;
     background-color: white;
+}
+
+/* Profile Details Page */
+.profile-details-wrapper {
+    position: fixed;
+    width: 100%;
+    top: 10vh;
+    left: 0;
+    background: transparent;
+    backdrop-filter: blur(40px);
+    padding-bottom: 100px;
+}
+
+.profile-details-nav {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    padding: 12px 101px 0 101px;
+}
+
+.profile-details-nav h3 {
+    color: white;
+    font-size: 22px;
+}
+
+.profile-img-name {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon {
+    margin-right: 5px;
+    border-radius: 55px;
+    background: white;
+    padding: 8px 14px;
+}
+
+.user-icon i {
+    font-size: 18px;
+    padding: 5px 0 0 3px;
+}
+
+.profile-img-name span img {
+    height: 100%;
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.profile-img-name span {
+    height: 48px;
+    width: 50px;
+    margin-right: 10px;
+}
+
+.profile-img-name p {
+    margin: 0;
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.profile-details-text {
+    padding: 68px 101px 17px 101px;
+    color: white;
+}
+
+.profile-details-text h2 {
+    font-size: 3rem;
+}
+
+.profile-details-text p {
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.profile-details-edit-btn {
+    padding: 10px 101px;
+}
+
+.profile-details-edit-btn button {
+    background: transparent;
+    color: white;
+    border-radius: 6px;
+    border: 2px solid white;
+    padding: 10px 16px;
+    font-size: 19px;
+    font-weight: 500;
+    transition: .5s;
+    outline: none;
+}
+
+.profile-details-edit-btn button:hover {
+    background: #48a7d7;
+    border: 2px solid #48a7d7;
+}
+
+.profile-details-edit-btn button a {
+    color: white;
+    text-decoration: none;
+}
+
+.profile-details-box {
+    position: fixed;
+    width: 77%;
+    left: 11%;
+    top: 44vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    border-radius: 6px;
+    margin-top: 12px;
+    padding-top: 122px;
+}
+
+.profile-details-name-years {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.profile-details-name-years p {
+    margin: 0;
+    font-size: 23px;
+    font-weight: 300;
+}
+
+.profile-details-name-years h3 {
+    margin: 0;
+    font-size: 21px;
+    font-weight: 500;
+}
+
+.profile-details-living-area p{
+    font-weight: 300;
+    font-size: 17px;
+}
+
+.profile-details-gender p {
+    font-weight: 300;
+    font-size: 17px;
+
+}
+
+.profile-details-bio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-middle-img {
+    height: 175px;
+    width: 187px;
+    position: absolute;
+    top: 37vh;
+    right: 46%;
+    z-index: 10;
+    text-align: center;
+}
+
+.profile-middle-img img {
+    height: 100%;
+    max-width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-middle-img i {
+    font-size: 63px;
+    color: white;
+    padding: 41px 45px;
+    border-radius: 75px;
+    background: gray;
 }
