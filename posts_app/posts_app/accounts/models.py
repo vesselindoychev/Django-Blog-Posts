@@ -26,6 +26,24 @@ class PostsAppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
     objects = PostsAppUserManager()
 
 
+class Country(models.Model):
+    COUNTRY_MAX_LENGTH = 30
+    COUNTRY_MIN_LENGTH = 5
+
+    name = models.CharField(
+        max_length=COUNTRY_MAX_LENGTH,
+        validators=(
+            MinLengthValidator(COUNTRY_MIN_LENGTH),
+        )
+    )
+
+    class Meta:
+        ordering = ('name',)
+
+    def __str__(self):
+        return self.name
+
+
 class Profile(models.Model):
     FIRST_NAME_MAX_LENGTH = 20
     FIRST_NAME_MIN_LENGTH = 2
@@ -42,6 +60,15 @@ class Profile(models.Model):
         FEMALE,
         OTHER,
     )
+
+    # BULGARIA = 'Bulgaria'
+    # FRANCE = 'France'
+    # ITALY = 'Italy'
+    # GREECE = 'Greece'
+    #
+    # COUNTRIES = (
+    #     BULGARIA, ITALY, FRANCE, GREECE
+    # )
 
     first_name = models.CharField(
         max_length=FIRST_NAME_MAX_LENGTH,
