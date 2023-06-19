@@ -44,6 +44,29 @@ class Country(models.Model):
         return self.name
 
 
+class City(models.Model):
+    CITY_MAX_LENGTH = 30
+    CITY_MIN_LENGTH = 5
+
+    country = models.ForeignKey(
+        Country,
+        on_delete=models.CASCADE,
+    )
+
+    name = models.CharField(
+        max_length=CITY_MAX_LENGTH,
+        validators=(
+            MinLengthValidator(CITY_MIN_LENGTH),
+        )
+    )
+
+    class Meta:
+        ordering = ('name',)
+
+    def __str__(self):
+        return self.name
+
+
 class Profile(models.Model):
     FIRST_NAME_MAX_LENGTH = 20
     FIRST_NAME_MIN_LENGTH = 2
