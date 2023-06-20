@@ -2,7 +2,7 @@ import datetime
 
 from django import forms
 from django.contrib.auth import forms as auth_forms, get_user_model
-from posts_app.accounts.models import Profile
+from posts_app.accounts.models import Profile, Country, City
 
 UserModel = get_user_model()
 
@@ -64,8 +64,23 @@ class EditProfileForm(forms.ModelForm):
         YEARS = [i for i in range(1980, datetime.datetime.now().year + 1)]
         model = Profile
         exclude = ('user',)
+        # fields = ('first_name', 'last_name', 'country', 'city')
         widgets = {
             'date_of_birth': forms.SelectDateWidget(
                 years=YEARS
             )
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['city'].queryset = City.objects.none()
+
+        if 'country' in self.data:
+            try:
+                country_id = int(self.data.get('country'))
+                self.fields['city'].queryset = City.objects.filter(country_id=country_id).order_by('name')
+            except (ValueError, TypeError):
+                pass
+        elif self.instance.pk:
+            self.fields['city'].queryset = self.instance.country.city_set.order_by('name')
