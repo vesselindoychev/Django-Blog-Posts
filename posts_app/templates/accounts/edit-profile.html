@@ -1,0 +1,38 @@
+{%  extends 'base.html' %}
+{% block title %}
+    Edit Profile
+{% endblock %}
+
+{% block content %}
+    <div class="form-wrapper-edit">
+        <div class="form-box-edit">
+            <form method="post" id="cityForm" data-cities-url="{% url 'ajax-load-cities' %}" enctype="multipart/form-data">
+                <h1>Edit Profile</h1>
+                {% csrf_token %}
+                {{ form }}
+                <button>Edit</button>
+            </form>
+        </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $('#id_country').change(function () {
+            let url = $('#cityForm').attr('data-cities-url')
+            console.log(url);
+            let countryId = $(this).val();
+            $.ajax({
+                url: url,
+                data: {
+                    'country': countryId
+                },
+                success: function (data) {
+                    $('#id_city').html(data);
+                }
+            });
+        });
+    </script>
+
+
+
+{% endblock %}
