@@ -68,6 +68,11 @@ class EditProfileForm(forms.ModelForm):
         widgets = {
             'date_of_birth': forms.SelectDateWidget(
                 years=YEARS
+            ),
+            'bio': forms.Textarea(
+                attrs={
+                    'rows': 3
+                }
             )
         }
 
