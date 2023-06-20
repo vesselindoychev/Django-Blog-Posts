@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 
 from posts_app.accounts.forms import CreateProfileForm, EditProfileForm
-from posts_app.accounts.models import Profile
+from posts_app.accounts.models import Profile, City
 
 
 class RegisterUserView(views.CreateView):
@@ -63,3 +63,13 @@ class EditProfileView(views.UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('profile-details', kwargs={'pk': self.object.user_id})
+
+
+def load_countries_and_cities(request):
+    country_id = request.GET.get('country')
+    cities = City.objects.filter(country_id=country_id).order_by('name')
+    context = {
+        'cities': cities,
+    }
+
+    return render(request, 'accounts/countries_and_cities_dropdown.html', context)
