@@ -125,11 +125,6 @@ class Profile(models.Model):
         blank=True,
     )
 
-    location = models.TextField(
-        null=True,
-        blank=True
-    )
-
     updated = models.DateTimeField(
         auto_now=True,
     )
